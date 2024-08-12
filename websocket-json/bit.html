@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="/assets/dcode.css">
+<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+
+const WebSocket = require("ws");
+
+cost wss = new WebSocket.Server({ port: 8082});
+
+wss.on("connection", ws => {
+    console.log("new client connected!");
+    
+    wss.on("close", () => {
+        console.log("new client disconnected!");
+    });
+});
+
+
+
+next 
+
+const WebSocket = require('ws');
+
+const wss = new WebSocket.Server({ port: 8082 });
+
+// Event listener for when a client connects
+wss.on('connection', function connection(ws) {
+    console.log('A new client connected!');
+
+  // Event listener for when a client sends a message
+  ws.on('message', function incoming(message) {
+    console.log('Received: %s', message);
+
+    // Echo the message back to the client
+    ws.send(`You sent: ${message}`);
+  });
+
+  // Event listener for when a client disconnects
+  ws.on('close', function close() {
+    console.log('Client disconnected');
+  });
+});
+
+next 
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+
+        <title> Sending JSON over websocket </title>
+
+    </head>
+    <body>
+        <h1> Sending JSON over websocket</h1>
+        <u1 class="tsummary">
+            <li> Highly convenient way to send data between <strong>client and server</strong></li>
+            <li> Great for <strong > real-time </strong>applications</li>
+            <li> Highly convenient way to send data between <strong>client and server</strong></li>
+        </u1>
+
+        <script>
+            const ws = new WebSocket("ws://localhost :8082");
+
+            ws.addEventListener("open", () => {
+                console.log("We are connected");
+            });
+        </script>
+    </body>
+</html>

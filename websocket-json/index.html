@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> WebSocket Client </title>
+</head>
+<body>
+    <h1> Sending JSON over websocket</h1>
+    <u1 class="tsummary">
+        <li> Highly convenient way to send data between <strong>client and server</strong></li>
+        <li> Great for <strong > real-time </strong>applications</li>
+        <li> Highly convenient way to send data between <strong>client and server</strong></li>
+    </u1>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:8082');
+
+    socket.addEventListener('open', function (event) {
+      console.log('Connected to WebSocket server');
+
+      // Send a JSON message to the server
+      const message = { type: 'echo', message: 'Hello new client' };
+      socket.send(JSON.stringify(message));
+    });
+
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server:', event.data);
+
+      // Parse the JSON message received from the server
+      try {
+        const data = JSON.parse(event.data);
+        console.log('Parsed JSON:', data);
+
+        // Handle different types of responses from the server
+        if (data.type === 'echo') {
+          console.log('Server echoed back:', data.message);
+        } else if (data.type === 'error') {
+          console.error('Server error:', data.message);
+        }
+    }
+    catch (error) {
+        console.error('Error parsing JSON:', error);
+    }
+    });
+
+    socket.addEventListener('close', function (event) {
+      console.log('WebSocket connection closed');
+    });
+
+    socket.addEventListener('error', function (event) {
+      console.error('WebSocket error:', event);
+    });
+  </script>
+</body>
+</html>
